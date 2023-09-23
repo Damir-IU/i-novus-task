@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  postgres-i-novus:
+    image: postgres:14
+    container_name: postgres-i-novus
+    environment:
+      POSTGRES_DB: "i-novus"
+      POSTGRES_USER: "dbuser"
+      POSTGRES_PASSWORD: "dbuser"
+    ports:
+      - "5465:5432"
+    restart: always

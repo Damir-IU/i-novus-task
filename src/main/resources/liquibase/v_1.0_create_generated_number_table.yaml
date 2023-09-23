@@ -1,0 +1,69 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.0
+      author: damir.iusupov
+      changes:
+        - createSequence:
+            dataType: BIGINT
+            incrementBy: 1
+            sequenceName: seq_generated_number_id
+            startValue: 1
+
+  - changeSet:
+      id: 1.0.1
+      author: damir.iusupov
+      changes:
+        - createTable:
+            tableName: generated_number
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: first_char
+                  type: CHAR(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: number
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: second_char
+                  type: CHAR(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: third_char
+                  type: CHAR(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: location
+                  type: VARCHAR(255)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 1.0.2
+      author: damir.iusupov
+      changes:
+        - createIndex:
+            indexName: idx_uk_full_number
+            tableName: generated_number
+            unique: true
+            columns:
+              - column:
+                  name: first_char
+              - column:
+                  name: number
+              - column:
+                  name: second_char
+              - column:
+                  name: third_char
